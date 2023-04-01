@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 //import shortid from 'shortid';
 import { Button, Input, Label, Sector, Title } from './ContactForm.styled';
-import { getContacts } from 'redux/selectors';
+//import { getContacts } from 'redux/selectors';
 
 // export const ContactForm = ({handleSubmit}) => {
 //   //const [id, setId] = useState(0);
 
-function ContactForm({handleSubmit}) {
-   const dispatch = useDispatch();
-   const contacts = useSelector(getContacts);
+function ContactForm({handleSubmit}){
+  const dispatch = useDispatch();
+  //const contacts = useSelector(getContacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -32,7 +32,7 @@ function ContactForm({handleSubmit}) {
   
   const submitForm = e => {
     e.preventDefault()
-    handleSubmit(name, number);
+    dispatch(handleSubmit(name, number));
     resetInput();
   }
 

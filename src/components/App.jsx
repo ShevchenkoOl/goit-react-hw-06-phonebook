@@ -6,7 +6,9 @@ import { Filter } from "./Fiter/Filter";
 import { GlobalStyle } from "./GlobalStyle";
 import shortid from 'shortid';
 
+
 export const App = () => {
+  
 
   const [contacts, setContacts] = useState(() =>{
     return JSON.parse(localStorage.getItem('contacts')) ?? [];
