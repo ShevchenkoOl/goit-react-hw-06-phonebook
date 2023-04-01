@@ -1,11 +1,19 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 //import shortid from 'shortid';
 import { Button, Input, Label, Sector, Title } from './ContactForm.styled';
+import { getContacts } from 'redux/selectors';
 
-export const ContactForm = ({handleSubmit}) => {
-  //const [id, setId] = useState(0);
+// export const ContactForm = ({handleSubmit}) => {
+//   //const [id, setId] = useState(0);
+
+function ContactForm({handleSubmit}) {
+   const dispatch = useDispatch();
+   const contacts = useSelector(getContacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -37,7 +45,7 @@ export const ContactForm = ({handleSubmit}) => {
       <Title>
              Phonebook
              <Sector>
-                   <form>
+                   <form onSubmit={handleSubmit}>
                         <Label>Name
                             <Input
                             type="text"
@@ -64,3 +72,5 @@ export const ContactForm = ({handleSubmit}) => {
       </Title>
     );
   }
+
+  export default ContactForm;

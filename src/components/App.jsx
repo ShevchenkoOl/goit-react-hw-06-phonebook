@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { ContactForm } from "./ContactForm/ContactForm";
+import ContactForm from "./ContactForm/ContactForm";
 import { Container, Title } from "./ContactForm/ContactForm.styled";
-import { ContactList } from "./ContactList/ContactList";
+import  ContactList  from "./ContactList/ContactList";
 import { Filter } from "./Fiter/Filter";
 import { GlobalStyle } from "./GlobalStyle";
 import shortid from 'shortid';

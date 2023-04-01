@@ -1,10 +1,15 @@
 import { PropTypes } from 'prop-types';
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { List, Item, Button} from './ContactList.styled';
+import { getContacts, getVisibleContacts } from 'redux/selectors';
 
-
-export const ContactList = ({ contacts, onDeleteContact })=>{
-    return (
+function ContactList ( { onDeleteContact }) {
+  // const dispatch = useDispatch();
+  // const visibleContacts = useSelector(getVisibleContacts);
+  const contacts = useSelector(getContacts);
+  
+  return (
       
       <List>
         {contacts.map(({ id, name, number }) => (
@@ -27,3 +32,4 @@ export const ContactList = ({ contacts, onDeleteContact })=>{
     onDeleteContact: PropTypes.func.isRequired
   };
 
+export default ContactList;
