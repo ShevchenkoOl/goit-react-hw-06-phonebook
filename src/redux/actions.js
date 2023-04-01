@@ -1,6 +1,6 @@
 import shortid from 'shortid';
 import { createAction } from '@reduxjs/toolkit';
-import { ADD_CONTACT, DELETE_CONTACT, FILTER_CONTACT } from './contacts-types';
+import { ADD_CONTACT, DELETE_CONTACT, FILTER_CONTACT } from './types';
 
 export const addContact = createAction(ADD_CONTACT, (name, number) => ({
   payload: {

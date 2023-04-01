@@ -1,16 +1,17 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 //import shortid from 'shortid';
 import { Button, Input, Label, Sector, Title } from './ContactForm.styled';
-//import { getContacts } from 'redux/selectors';
+import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/actions';
 
 // export const ContactForm = ({handleSubmit}) => {
 //   //const [id, setId] = useState(0);
 
-function ContactForm({handleSubmit}){
+function ContactForm(){
   const dispatch = useDispatch();
-  //const contacts = useSelector(getContacts);
+  const contacts = useSelector(getContacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -29,17 +30,44 @@ function ContactForm({handleSubmit}){
     }
       
   }
-  
-  const submitForm = e => {
-    e.preventDefault()
-    dispatch(handleSubmit(name, number));
-    resetInput();
-  }
+  const checkRepeatName = name => {
+    return contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase(),
+    );
+  };
 
-  const resetInput = () =>{
+  const checkRepeatNumber = number => {
+    return contacts.find(contact => contact.number === number);
+  };
+
+  const checkEmptyQuery = (name, number) => {
+    return name.trim() === '' || number.trim() === '';
+  };
+
+  const checkValidNumber = number => {
+    return !/\d{3}[-]\d{2}[-]\d{2}/g.test(number);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (checkRepeatName(name)) {
+      alert(`${name} is already in contacts.`);
+    } else if (checkRepeatNumber(number)) {
+      alert(`${name} is already in contacts.`);
+    } else if (checkEmptyQuery(name, number)) {
+      alert.info("Enter the contact's name and number phone!");
+    } else if (checkValidNumber(number)) {
+      alert.error('Enter the correct number phone!');
+    } else {
+      dispatch(addContact(name, number));
+    }
+    resetInput();
+  };
+
+  const resetInput = () => {
     setName('');
     setNumber('');
-  }
+  };
 
     return (
       <Title>
@@ -66,7 +94,7 @@ function ContactForm({handleSubmit}){
                             placeholder="123-45-67"
                             />
                        </Label>
-                       <Button value="Submit" onClick={submitForm}>Add contact</Button>
+                       <Button value="Submit">Add contact</Button>
                     </form>
                 </Sector>
       </Title>
