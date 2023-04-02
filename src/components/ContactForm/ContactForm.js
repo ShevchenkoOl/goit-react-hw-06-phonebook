@@ -1,13 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-//import shortid from 'shortid';
 import { Button, Input, Label, Sector, Title } from './ContactForm.styled';
 import { getContacts } from 'redux/selectors';
 import { addContact } from 'redux/actions';
-
-// export const ContactForm = ({handleSubmit}) => {
-//   //const [id, setId] = useState(0);
 
 function ContactForm(){
   const dispatch = useDispatch();
