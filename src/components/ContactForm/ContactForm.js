@@ -50,9 +50,9 @@ function ContactForm(){
     } else if (checkRepeatNumber(number)) {
       alert(`${name} is already in contacts.`);
     } else if (checkEmptyQuery(name, number)) {
-      alert.info("Enter the contact's name and number phone!");
+      alert("Enter the contact's name and number phone!");
     } else if (checkValidNumber(number)) {
-      alert.error('Enter the correct number phone!');
+      alert('Enter the correct number phone!');
     } else {
       dispatch(addContact(name, number));
     }
